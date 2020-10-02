@@ -1,13 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Box from '@material-ui/core/Box';
-import SearchGroup from '../components/SearchGroup';
+import SearchInput from '../components/SearchInput';
+import SearchData from '../components/SearchData';
 
 const useStyles = makeStyles(() => ({
     root: {
-      backgroundColor: "grey",
-      width: "100vw",
-      height: "100vh"
+      backgroundImage: "../assets/book-bg.pg",
+      width: "100%",
+      height: "100%"
     },
     search: {
         margin: "auto"
@@ -17,9 +18,12 @@ const useStyles = makeStyles(() => ({
 function Search() {
     const classes = useStyles();
 
+    const [result, setResult] = React.useState([]);
+
     return(
         <Box className={classes.root}>
-            <SearchGroup className={classes.search}/>
+            <SearchInput className={classes.search} setResult={setResult}/>
+            <SearchData result={result}/>
         </Box>
     );
 }
