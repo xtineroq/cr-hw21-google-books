@@ -13,7 +13,10 @@ module.exports = {
   // find all books saved in database
   findAll: (req, res) => {
     db.Book.find(req.query)
-      .then((dbModel) => res.json(dbModel))
+      .then((dbModel) => {
+        res.json(dbModel)
+        console.log(dbModel);
+      })
       .catch((err) => res.status(422).json(err));
   },
   // find book by id

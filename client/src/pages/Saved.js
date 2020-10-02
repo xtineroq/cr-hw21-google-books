@@ -1,25 +1,26 @@
 import React from "react";
 import API from "../utils/API";
 import Result from "../components/Result";
+import Box from "@material-ui/core/Box";
 
 function Saved() {
-  state = {
-    savedBooks: [],
-  };
 
-  React.useEffect(() => {
-    fetchBook();
-  });
+  const [savedBooks, setSavedBooks] = React.useState([]);
 
-  fetchBook = () => {
+  // retrieve saved books from db
+  const fetchBook = () => {
     API.getBooks()
       .then((res) => {
-        setState({ savedBooks: res.data }, function () {
-          console.log(savedBooks);
-        });
+        console.log(res.data);
+        setSavedBooks(res.data)
       })
       .catch((err) => console.log(err));
   };
+
+  // load saved books
+  React.useEffect(() => {
+    fetchBook();
+  }, []);
 
   return (
     <Box>
@@ -27,13 +28,13 @@ function Saved() {
         return (
           <Result
             key={book.id}
-            title={book.volumeInfo.title}
-            authors={book.volumeInfo.authors}
-            description={book.volumeInfo.description}
-            link={book.volumeInfo.infoLink}
-            image={book.volumeInfo.imageLinks.thumbnail}
+            title={book.title}
+            authors={book.authors}
+            description={book.description}
+            link={book.link}
+            image={book.image}
             id={book._id}
-            fetchBooks={fetchBooks}
+            fetchBook={fetchBook}
           />
         );
       })}

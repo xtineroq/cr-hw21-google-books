@@ -8,6 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import FindInPageIcon from '@material-ui/icons/FindInPage';
 import MenuBookIcon from '@material-ui/icons/MenuBook';
+import { Link } from 'react-router-dom';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -86,8 +87,14 @@ export default function FullWidthTabs() {
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <LinkTab label="Search" icon={<FindInPageIcon />} href="/search" {...a11yProps(0)} />
-          <LinkTab label="Saved" icon={<MenuBookIcon />} href="/saved" {...a11yProps(1)} />
+          <Link to="/search">
+            Search
+          </Link>
+          <Link to="/saved">
+            Saved
+          </Link>
+          {/* <LinkTab label="Search" icon={<FindInPageIcon />}  {...a11yProps(0)} />
+          <LinkTab label="Saved" icon={<MenuBookIcon />} href="/saved" {...a11yProps(1)} /> */}
         </Tabs>
       </AppBar>
     </div>
