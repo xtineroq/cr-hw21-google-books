@@ -8,6 +8,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import API from "../utils/API";
+import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,10 +32,11 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function SearchResult(props) {
+function Result(props) {
   const classes = useStyles();
 
-  const handleSave = (event) => {
+  // handler for Save button in Search page
+  const handleSave = () => {
     API.saveBook({
       title: props.title,
       authors: props.authors,
@@ -45,6 +47,18 @@ function SearchResult(props) {
       res => console.log(res)
       ).catch(
         err => console.log(err)
+      )
+  }
+
+  // handler for Delete button in Saved page
+  const handleDelete = () => {
+    API.deleteBook(props.id)
+    .then(
+      res => {
+        props.fetchBook()
+        console.log(props.id)
+      }).catch(
+        error => console.log(error)
       )
   }
 
@@ -73,18 +87,28 @@ function SearchResult(props) {
               <Grid item xs align="left">
                 <IconButton
                   variant="body2 outlined"
-                  color="#teal"
+                  color="primary"
                   href={props.link}
                 >
                   <VisibilityIcon />
                 </IconButton>
-                <IconButton
-                  variant="body2 outlined"
-                  color="pink"
-                  onClick={handleSave}
-                >
-                  <FavoriteBorderIcon />
-                </IconButton>
+                {!props.id ?
+                  <IconButton
+                    variant="body2 outlined"
+                    color="secondary"
+                    onClick={handleSave}
+                  >
+                    <FavoriteBorderIcon />
+                  </IconButton>
+                  :
+                  <IconButton
+                    variant="body2 outlined"
+                    color="secondary"
+                    onClick={handleDelete}
+                  >
+                    <DeleteOutlineIcon />
+                  </IconButton>
+                }
               </Grid>
             </Grid>
           </Grid>
@@ -94,4 +118,4 @@ function SearchResult(props) {
   );
 }
 
-export default SearchResult;
+export default Result;
