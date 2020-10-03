@@ -13,12 +13,13 @@ import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
+    paddingTop: "1rem",
+    paddingBottom: "1rem",
   },
   paper: {
     padding: theme.spacing(2),
     margin: "auto",
     maxWidth: "80vw",
-    marginBottom: "2rem",
   },
   image: {
     width: 128,
@@ -56,7 +57,6 @@ function Result(props) {
     .then(
       res => {
         props.fetchBook()
-        console.log(props.id)
       }).catch(
         error => console.log(error)
       )

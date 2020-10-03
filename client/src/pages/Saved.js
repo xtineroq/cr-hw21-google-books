@@ -1,9 +1,21 @@
 import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import API from "../utils/API";
 import Result from "../components/Result";
 import Box from "@material-ui/core/Box";
+import Image from "../assets/book-bg.jpg";
+
+const useStyles = makeStyles(() => ({
+  root: {
+    backgroundImage: `url(${Image})`,
+    width: "100%",
+    minHeight: "100vh",
+    paddingTop: "2rem",
+  }
+}));
 
 function Saved() {
+  const classes = useStyles();
 
   const [savedBooks, setSavedBooks] = React.useState([]);
 
@@ -11,7 +23,6 @@ function Saved() {
   const fetchBook = () => {
     API.getBooks()
       .then((res) => {
-        console.log(res.data);
         setSavedBooks(res.data)
       })
       .catch((err) => console.log(err));
@@ -23,7 +34,7 @@ function Saved() {
   }, []);
 
   return (
-    <Box>
+    <Box className={classes.root}>
       {savedBooks.map((book) => {
         return (
           <Result

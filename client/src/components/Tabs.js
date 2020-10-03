@@ -36,32 +36,14 @@ TabPanel.propTypes = {
   value: PropTypes.any.isRequired,
 };
 
-function a11yProps(index) {
-  return {
-    id: `full-width-tab-${index}`,
-    'aria-controls': `full-width-tabpanel-${index}`,
-  };
-}
-
-function LinkTab(props) {
-  return (
-    <Tab
-      component="a"
-      onClick={(event) => {
-        event.preventDefault();
-      }}
-      {...props}
-    />
-  );
-}
-
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
     width: "100vw",
   },
   title: {
     flexGrow: 1,
+    padding: "2rem",
+    fontFamily: "Roboto",
   },
 }));
 
@@ -75,26 +57,20 @@ export default function FullWidthTabs() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="default">
-        <Typography variant="h6" className={classes.title}>
+      <AppBar position="static" color="secondary">
+        <Typography variant="h4" className={classes.title}>
           Google Books Search App
         </Typography>
         <Tabs
           value={value}
           onChange={handleChange}
           indicatorColor="primary"
-          textColor="primary"
+          textColor="default"
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <Link to="/search">
-            Search
-          </Link>
-          <Link to="/saved">
-            Saved
-          </Link>
-          {/* <LinkTab label="Search" icon={<FindInPageIcon />}  {...a11yProps(0)} />
-          <LinkTab label="Saved" icon={<MenuBookIcon />} href="/saved" {...a11yProps(1)} /> */}
+        <Tab label="Search" icon={<FindInPageIcon />} component={Link} to="/search" />
+        <Tab label="Saved" icon={<MenuBookIcon />} component={Link} to="/saved" />
         </Tabs>
       </AppBar>
     </div>

@@ -24,7 +24,7 @@ function SearchData({ result }) {
             authors={book.volumeInfo.authors}
             description={book.volumeInfo.description}
             link={book.volumeInfo.infoLink}
-            image={book.volumeInfo.imageLinks.thumbnail}
+            image={book.volumeInfo.imageLinks === undefined ? "https://www.cdgi.com/wp-content/uploads/2019/05/404-Pages.jpg" : `${book.volumeInfo.imageLinks.thumbnail}`}
           />
         );
       })}
