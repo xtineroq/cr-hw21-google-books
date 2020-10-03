@@ -9,6 +9,7 @@ import FavoriteBorderIcon from "@material-ui/icons/FavoriteBorder";
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import API from "../utils/API";
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
+import SaveModal from '../components/SaveModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,9 +45,7 @@ function Result(props) {
       description: props.description,
       image: props.image,
       link: props.link
-    }).then(
-      res => console.log(res)
-      ).catch(
+    }).catch(
         err => console.log(err)
       )
   }
@@ -85,30 +84,36 @@ function Result(props) {
                 </Typography>
               </Grid>
               <Grid item xs align="left">
-                <IconButton
-                  variant="body2 outlined"
-                  color="primary"
-                  href={props.link}
-                >
-                  <VisibilityIcon />
-                </IconButton>
-                {!props.id ?
-                  <IconButton
-                    variant="body2 outlined"
-                    color="secondary"
-                    onClick={handleSave}
-                  >
-                    <FavoriteBorderIcon />
-                  </IconButton>
-                  :
-                  <IconButton
-                    variant="body2 outlined"
-                    color="secondary"
-                    onClick={handleDelete}
-                  >
-                    <DeleteOutlineIcon />
-                  </IconButton>
-                }
+                <Grid container direction="row">
+                  <Grid item>
+                    <IconButton
+                      variant="body2 outlined"
+                      color="primary"
+                      href={props.link}
+                      target="_blank"
+                    >
+                      <VisibilityIcon style={{fill: "black"}}/>
+                    </IconButton>
+                  </Grid>
+                  <Grid item>
+                    {!props.id ?
+                      <SaveModal
+                        variant="body2 outlined"
+                        onClick={handleSave}
+                      >
+                        <FavoriteBorderIcon color="secondary"/>
+                      </SaveModal>
+                      :
+                      <IconButton
+                        variant="body2 outlined"
+                        color="secondary"
+                        onClick={handleDelete}
+                      >
+                        <DeleteOutlineIcon />
+                      </IconButton>
+                    }
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>

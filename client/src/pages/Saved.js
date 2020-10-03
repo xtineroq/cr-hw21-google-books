@@ -38,7 +38,7 @@ function Saved() {
       {savedBooks.map((book) => {
         return (
           <Result
-            key={book.id}
+            key={book._id}
             title={book.title}
             authors={book.authors}
             description={book.description}

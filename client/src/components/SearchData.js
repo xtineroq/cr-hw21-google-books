@@ -6,11 +6,10 @@ function SearchData({ result }) {
   const [searchedBook, setSearchedBook] = React.useState([]);
 
   React.useEffect(() => {
-    console.log(result);
     if (result.length > 0) {
       setSearchedBook(result);
     } else {
-      console.log("no match");
+      console.log("No search query found");
     }
   }, [setSearchedBook, result]);
 

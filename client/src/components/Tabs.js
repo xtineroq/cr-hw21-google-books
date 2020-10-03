@@ -1,14 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import FindInPageIcon from '@material-ui/icons/FindInPage';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
-import { Link } from 'react-router-dom';
+import React from "react";
+import PropTypes from "prop-types";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import FindInPageIcon from "@material-ui/icons/FindInPage";
+import MenuBookIcon from "@material-ui/icons/MenuBook";
+import { Link } from "react-router-dom";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -45,6 +45,10 @@ const useStyles = makeStyles((theme) => ({
     padding: "2rem",
     fontFamily: "Roboto",
   },
+  tabText: {
+    fontWeight: 500,
+    letterSpacing: "2px",
+  },
 }));
 
 export default function FullWidthTabs() {
@@ -64,13 +68,26 @@ export default function FullWidthTabs() {
         <Tabs
           value={value}
           onChange={handleChange}
-          indicatorColor="primary"
-          textColor="default"
+          TabIndicatorProps={{
+            style: { backgroundColor: "black", height: "3px" },
+          }}
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-        <Tab label="Search" icon={<FindInPageIcon />} component={Link} to="/search" />
-        <Tab label="Saved" icon={<MenuBookIcon />} component={Link} to="/saved" />
+          <Tab
+            className={classes.tabText}
+            label="Search"
+            icon={<FindInPageIcon />}
+            component={Link}
+            to="/search"
+          />
+          <Tab
+            className={classes.tabText}
+            label="Saved"
+            icon={<MenuBookIcon />}
+            component={Link}
+            to="/saved"
+          />
         </Tabs>
       </AppBar>
     </div>
