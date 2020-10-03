@@ -47,7 +47,7 @@ Please direct all questions to:
 
 📧 mcroque89@gmail.com
 
-## Screenshot
+## Screenshots
 ![main-page](./client/src/assets/screenshots/main.png)
 ![search-page](./client/src/assets/screenshots/search.png)
 ![modal-page](./client/src/assets/screenshots/modal.png)
